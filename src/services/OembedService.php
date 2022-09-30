@@ -169,6 +169,7 @@ class OembedService extends Component
                     $duration = $media instanceof FallbackAdapter ? 15 * 60 : 60 * 60;
 
                     if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+                        $media->code = json_decode(json_encode($media->code));
                         Craft::$app->cache->set($cacheKey, json_decode(json_encode($media)), $duration);
                     } else {
                         Craft::$app->cache->set($cacheKey, $media, $duration);
